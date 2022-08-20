@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import Chatting from '@/pages/chatting';
-import Settings from '@/pages/settings';
-import Home from '@/pages/home';
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import Chatting from '@/pages/chatting';
+import Home from '@/pages/home';
+import Settings from '@/pages/settings';
 
 const App = () => {
   const Tab = createBottomTabNavigator();
@@ -37,10 +38,7 @@ const App = () => {
           options={{
             title: '채팅',
             tabBarIcon: ({ focused }) => (
-              <Icon
-                name={focused ? 'chatbubbles' : 'chatbubbles-outline'}
-                size={22}
-              />
+              <Icon name={focused ? 'chatbubbles' : 'chatbubbles-outline'} size={22} />
             ),
             ...defaultTabScreenOptions,
           }}
@@ -51,10 +49,7 @@ const App = () => {
           options={{
             title: '세팅',
             tabBarIcon: ({ focused }) => (
-              <Icon
-                name={focused ? 'settings' : 'settings-outline'}
-                size={22}
-              />
+              <Icon name={focused ? 'settings' : 'settings-outline'} size={22} />
             ),
             ...defaultTabScreenOptions,
           }}
