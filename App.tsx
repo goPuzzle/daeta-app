@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import { useEffect } from 'react';
+import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Chatting from '@/pages/chatting';
@@ -16,6 +18,14 @@ const App = () => {
     },
     tabBarActiveTintColor: '#000000',
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      SplashScreen.hide();
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <NavigationContainer>
