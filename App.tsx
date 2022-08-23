@@ -7,9 +7,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import Chatting from '@/pages/chatting';
 import Home from '@/pages/home';
+import Login from '@/pages/login';
 import Settings from '@/pages/settings';
 
 const App = () => {
+  const isLoggedIn = false;
   const Tab = createBottomTabNavigator();
 
   const defaultTabScreenOptions = {
@@ -26,6 +28,10 @@ const App = () => {
 
     return () => clearTimeout(timeoutId);
   }, []);
+
+  if (!isLoggedIn) {
+    return <Login />;
+  }
 
   return (
     <NavigationContainer>
