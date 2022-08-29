@@ -1,7 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
+import EncryptedStorage from 'react-native-encrypted-storage';
 import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -9,9 +10,10 @@ import Chatting from '@/pages/chatting';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
 import Settings from '@/pages/settings';
+import { ENCRYPTED_STORAGE_KEY } from '@/shared/constants';
 
 const App = () => {
-  const isLoggedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const Tab = createBottomTabNavigator();
 
   const defaultTabScreenOptions = {
@@ -22,15 +24,19 @@ const App = () => {
   };
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      SplashScreen.hide();
-    }, 3000);
-
-    return () => clearTimeout(timeoutId);
+    const isAccessTokenExist = async () => {
+      const accessToken = await EncryptedStorage.getItem(ENCRYPTED_STORAGE_KEY.ACCESS_TOKEN);
+      if (accessToken !== null) {
+        setIsLoggedIn(true);
+      }
+      setIsLoggedIn(false);
+    };
+    isAccessTokenExist();
+    SplashScreen.hide();
   }, []);
 
   if (!isLoggedIn) {
-    return <Login />;
+    return <Login setIsLoggedIn={setIsLoggedIn} />;
   }
 
   return (

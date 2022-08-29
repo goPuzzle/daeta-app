@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">대타</string>
+    <string name="kakao_app_key">639fccdaa35b49287be0ee266db49f10</string>
 </resources>

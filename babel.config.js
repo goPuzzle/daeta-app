@@ -18,7 +18,6 @@ module.exports = {
           '.jsx',
           '.js',
           '.json',
-          'vars.css',
         ],
         alias: {
           '@': '.',
